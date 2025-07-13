@@ -17,7 +17,7 @@
 
     #game-container {
       background-color: rgba(0, 0, 0, 0.75);
-      margin: 60px auto;
+      margin: 60px auto 100px auto;
       padding: 30px;
       border-radius: 20px;
       width: 90vw;
@@ -55,7 +55,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-top: 20px;
+      margin: 20px 0;
     }
 
     .arrow-row {
@@ -97,6 +97,28 @@
       box-shadow: 0 0 10px rgba(0,0,0,0.4);
       z-index: 999;
     }
+
+    /* Smaller canvas + button spacing on mobile */
+    @media (max-width: 600px) {
+      canvas {
+        max-width: 90vw;
+      }
+
+      #game-container {
+        padding: 20px;
+        margin-bottom: 140px; /* more space above support button */
+      }
+
+      .arrow-btn {
+        font-size: 24px;
+        padding: 12px 20px;
+        margin: 0 8px;
+      }
+
+      #start-button {
+        margin-top: 10px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -105,9 +127,8 @@
     <h1>Snake Game 🐍</h1>
     <canvas id="gameCanvas" width="600" height="600"></canvas>
     <div id="score">Score: 0</div>
-    <button id="start-button" onclick="startGame()">Start Game</button>
 
-    <!-- On-screen arrow buttons -->
+    <!-- 🔼 On-screen arrow buttons (now above Start button) -->
     <div id="arrow-controls">
       <div class="arrow-row">
         <button class="arrow-btn" onclick="changeDirection('up')">⬆️</button>
@@ -118,6 +139,8 @@
         <button class="arrow-btn" onclick="changeDirection('right')">➡️</button>
       </div>
     </div>
+
+    <button id="start-button" onclick="startGame()">Start Game</button>
   </div>
 
   <a href="https://ko-fi.com/theewhiterabbit" target="_blank" id="support-button">❤️ Support Me</a>
