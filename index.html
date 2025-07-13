@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Snake Game 🐍</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      background: url('bg.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+    }
+
+    #support-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #ff5f5f;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 16px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.4);
+      z-index: 999;
+    }
+
+    #logo-left {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      height: 40px;
+      z-index: 998;
+    }
+
+    #logo-controller {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      height: 40px;
+      z-index: 998;
+    }
+
+    #game-container {
+      width: 95vw;
+      max-width: 1400px;
+      margin: 60px auto;
+      padding: 30px;
+      background-color: rgba(0, 0, 0, 0.7);
+      border-radius: 20px;
+      box-shadow: 0 0 30px #000;
+      text-align: center;
+    }
+
+    #gameCanvas {
+      width: 100%;
+      height: auto;
+      border: 2px solid #00ff00;
+      display: block;
+      margin: 0 auto 20px;
+      background-color: black;
+    }
+
+    #score {
+      font-size: 24px;
+    }
+
+    #start-button {
+      margin-top: 15px;
+      padding: 14px 28px;
+      font-size: 1.3em;
+      font-weight: bold;
+      background-color: limegreen;
+      color: black;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    #start-button:hover {
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+  <img src="logo.png" alt="Logo Left" id="logo-left">
+  <img src="controller.png" alt="Controller Icon" id="logo-controller">
+
+  <div id="game-container">
+    <h1><img src="logo.png" alt="Logo" style="height: 30px; vertical-align: middle;"> Snake Game</h1>
+    <canvas id="gameCanvas" width="1400" height="1000"></canvas>
+    <div id="score">Score: 0</div>
+    <button id="start-button" onclick="startGame()">Start Game</button>
+  </div>
+
+  <a href="https://ko-fi.com/theewhiterabbit" target="_blank" id="support-button">❤️ Support Me</a>
+
+  <script src="game.js"></script>
+  <script>
+    let gamepadIndex = null;
+
+    window.addEventListener("gamepadconnected", (e) => {
+      gamepadIndex = e.gamepad.index;
+      console.log("Gamepad connected:", e.gamepad);
+    });
+
+    window.addEventListener("gamepaddisconnected", () => {
+      gamepadIndex = null;
+      console.log("Gamepad disconnected");
+    });
+
+    function pollGamepad() {
+      if (gamepadIndex === null) return;
+
+      const gamepad = navigator.getGamepads()[gamepadIndex];
+      if (!gamepad) return;
+
+      const threshold = 0.5;
+      const [x, y] = [gamepad.axes[0], gamepad.axes[1]];
+
+      if (y < -threshold) changeDirection("up");
+      else if (y > threshold) changeDirection("down");
+      else if (x < -threshold) changeDirection("left");
+      else if (x > threshold) changeDirection("right");
+    }
+
+    setInterval(pollGamepad, 100);
+
+    window.changeDirection = window.changeDirection || function(dir) {
+      console.log("Direction change:", dir);
+    };
+
+    function startGame() {
+      console.log("Game started");
+      if (typeof window.initGame === 'function') {
+        window.initGame();
+      }
+    }
+  </script>
+</body>
+</html>
