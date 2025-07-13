@@ -1,9 +1,9 @@
 body {
   margin: 0;
   padding: 0;
-  background: url("bg.jpg") no-repeat center center fixed;
+  font-family: sans-serif;
+  background: url('bg.jpg') no-repeat center center fixed;
   background-size: cover;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: white;
   display: flex;
   justify-content: center;
@@ -12,38 +12,20 @@ body {
   min-height: 100vh;
 }
 
-#game-container {
-  text-align: center;
-  background-color: rgba(0, 0, 0, 0.65);
-  padding: 30px 40px;
-  border-radius: 20px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.5);
-  max-width: 95vw;
+#logo-left {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  height: 40px;
+  z-index: 998;
 }
 
-h1 {
-  font-size: 2.5em;
-  margin: 0 0 20px 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  text-shadow: 1px 1px 3px black;
-}
-
-#gameCanvas {
-  background-color: rgba(0, 0, 0, 0.9);
-  border: 2px solid #fff;
-  width: 100%;
-  max-width: 600px;
-  height: auto;
-  box-shadow: 0 0 20px limegreen;
-}
-
-#score {
-  margin-top: 15px;
-  font-size: 1.2em;
-  text-shadow: 1px 1px 2px black;
+#logo-controller {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  height: 40px;
+  z-index: 998;
 }
 
 #support-button {
@@ -58,20 +40,38 @@ h1 {
   font-weight: bold;
   font-size: 16px;
   box-shadow: 0 0 10px rgba(0,0,0,0.4);
-  font-family: sans-serif;
   z-index: 999;
-  transition: transform 0.2s ease, background 0.3s ease;
 }
 
-#support-button:hover {
-  background-color: #ff2c2c;
-  transform: scale(1.05);
+#game-container {
+  max-width: 95vw;
+  margin: 60px auto;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 20px;
+  box-shadow: 0 0 30px #000;
+  text-align: center;
+}
+
+#gameCanvas {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border: 4px solid #00ff00;
+  display: block;
+  margin: 0 auto 20px;
+  background-color: black;
+  box-shadow: 0 0 20px lime;
+}
+
+#score {
+  font-size: 24px;
+  margin-bottom: 10px;
 }
 
 #start-button {
-  margin-top: 15px;
-  padding: 10px 20px;
-  font-size: 1em;
+  padding: 14px 28px;
+  font-size: 1.2em;
   font-weight: bold;
   background-color: limegreen;
   color: black;
@@ -79,8 +79,40 @@ h1 {
   border-radius: 10px;
   cursor: pointer;
   transition: transform 0.2s ease;
+  margin-bottom: 20px;
 }
 
 #start-button:hover {
   transform: scale(1.1);
+}
+
+/* 🎮 On-screen Directional Buttons (Always Visible) */
+#mobile-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15px;
+  gap: 8px;
+}
+
+#mobile-controls .row {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+#mobile-controls button {
+  background-color: #222;
+  border: 2px solid limegreen;
+  color: white;
+  font-size: 24px;
+  padding: 15px 25px;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 0 10px #0f0;
+  transition: background 0.2s ease;
+}
+
+#mobile-controls button:hover {
+  background-color: #0a0;
 }
