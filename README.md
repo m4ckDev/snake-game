@@ -35,7 +35,7 @@ snake-game/
 
 1. **Download or Clone the Repository**
    ```bash
-   git clone https://github.com/YOUR_USERNAME/snake-game.git
+   git clone https://github.com/m4ckDev/snake-game.git
    ```
 
 2. **Open in a Browser**
