@@ -70,7 +70,7 @@ _Add screenshots here once hosted on GitHub Pages or locally._
 ## 🌐 Live Demo
 
 If hosted via GitHub Pages:
-[Play Snake Game](https://YOUR_USERNAME.github.io/snake-game/)
+[Play Snake Game](https://m4ckDev.github.io/snake-game/)
 
 ---
 
